@@ -9,7 +9,7 @@ void printString(const String str){
 }
 
 int main(){
-  String *s1 = string_new_ptr();
+  String *s1 = string_ptr_new();
 
   printf("==========Auto-Shrink off==========\n");
   printString(*s1);

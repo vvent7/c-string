@@ -24,7 +24,7 @@ String string_new_cfg(unsigned short auto_shrink){
   return str;
 }
 
-String* string_new_ptr_cfg(unsigned short auto_shrink){
+String* string_ptr_new_cfg(unsigned short auto_shrink){
   String *pstr = (String*) malloc(sizeof(String*));
   (*pstr) = string_new_cfg(auto_shrink);
   return pstr;

@@ -35,9 +35,9 @@ StringData* string_data(const String str);
 /*----------------------------------Constructor----------------------------------*/
 /* Creates the String and returns its address */
 String string_new_cfg(unsigned short auto_shrink);
-String* string_new_ptr_cfg(unsigned short auto_shrink);
+String* string_ptr_new_cfg(unsigned short auto_shrink);
 #define string_new() (string_new_cfg(_CSTRING_DEFAULT_AUTO_SHRINK))
-#define string_new_ptr() (string_new_ptr_cfg(_CSTRING_DEFAULT_AUTO_SHRINK))
+#define string_ptr_new() (string_ptr_new_cfg(_CSTRING_DEFAULT_AUTO_SHRINK))
 /*==============================================================================*/
 
 /*-----------------------------------Pointers-----------------------------------*/
