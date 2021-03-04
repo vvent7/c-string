@@ -65,8 +65,7 @@ unsigned short string_empty(const String *str);
 /* Sets String's Size */
 void string_set_size(String *str, const size_t new_size);
 
-/* Sets String's Capacity
- * Returns: updated string */
+/* Sets String's Capacity */
 void string_set_capacity(String *str, const size_t new_cap);
 
 /* Sets String's auto_shrink */
@@ -96,44 +95,44 @@ char string_back(const String *str);
 char* string_set_gap(String *str, const size_t index, const size_t length);
 
 /* Inserts 'length' elements of 's2' inside 's1' at specific 'index'
- * Returns: updated string */
+ * Returns: pointer to the beggining of inserted string */
 char* string_n_insert(String *s1, const size_t index, const char *s2, const size_t length);
 
 /* Inserts ALL elements of 's2' inside 's1' at specific 'index'
  * s2Type: specifies type of 's2':
  *   - CSTRING_STRING_TYPE -> String (uses stored size / O(1))
  *   - CSTRING_ARR_TYPE -> char* (uses strlen to find size / O(n))
- * Returns: updated string */
+ * Returns: pointer to the beggining of inserted string */
 char* string_insert(String *s1, const size_t index, const char *s2, const StrType s2Type);
 
 /* Appends 'length' elements of 's2' at the end of 's1' 
- * Returns: updated string */
+ * Returns: pointer to the beggining of appended string */
 char* string_n_append(String *s1, const char *s2, const size_t length);
 
 /* Inserts ALL elements of 's2' inside 's1' at the end of 's1'
  * s2Type: specifies type of 's2':
  *   - CSTRING_STRING_TYPE -> String (uses stored size / O(1))
  *   - CSTRING_ARR_TYPE -> char* (uses strlen to find size / O(n))
- * Returns: updated string */
+ * Returns: pointer to the beggining of appended string */
 char* string_append(String *s1, const char *s2, const StrType s2Type);
 
 /* Inserts char 'c' inside 's1' at specific 'index'
- * Returns: updated string */
+ * Returns: pointer to the inserted char */
 char* string_insert_c(String *str, const size_t index, const char c);
 
 /* Appends char 'c' at the end of 's1' 
- * Returns: updated string */
+ * Returns: pointer to the inserted char */
 char* string_append_c(String *str, const char c);
 
 /* Removes 'length' elements from 'str' starting at a specific index
  * Returns: 
- * - Successful: updated string
+ * - Successful: first element after the last erased
  * - Error: NULL */
 char* string_n_erase(String *str, const size_t index, size_t length);
 
 /* Removes a single element from 'str' at specific index
  * Returns: 
- * - Successful: updated string
+ * - Successful: first element after the last erased
  * - Error: NULL */
 char* string_erase(String *str, const size_t index);
 
