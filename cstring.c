@@ -10,7 +10,7 @@ StringData* _string_data(const String *str){
   return string_valid(str) ? ((StringData*)(*str))-1 : NULL;
 }
 
-String* string_new_cfg(CapacityManagement capMan, char auto_shrink){
+String* string_new_cfg(StringCapMan capMan, char auto_shrink){
   StringData *sd = (StringData*) malloc(sizeof(StringData) + sizeof(char));
   String *pstr = (String*) malloc(sizeof(String));
 
@@ -21,7 +21,7 @@ String* string_new_cfg(CapacityManagement capMan, char auto_shrink){
   return pstr;
 }
 
-String* string_new_copy_cfg(const char *src, const StrType srcType, CapacityManagement capMan, char auto_shrink){
+String* string_new_copy_cfg(const char *src, const StrType srcType, StringCapMan capMan, char auto_shrink){
   String *str = string_new_cfg(capMan, auto_shrink);
   string_append(str, src, srcType);
   return str;

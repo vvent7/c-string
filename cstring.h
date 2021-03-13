@@ -15,14 +15,14 @@
 #define _CSTRING_DEFAULT_CAP_MAN 0
 #define _CSTRING_DEFAULT_AUTO_SHRINK 0
 
-/* CapacityManagement manages the way how the String Grows and Shrinks.
+/* StringCapMan manages the way how the String Grows and Shrinks.
  * ## CSTRING_CAPMAN_LOGARITHMIC ##
  *  - Growing rule: (size<=capacity && (capacity % _CSTRING_GROWTH_FACTOR)==0)
  *  - Shrinking rule: (size<=capacity && size>=(capacity/_CSTRING_GROWTH_FACTOR))
  * ## CSTRING_CAPMAN_EQUAL_SIZE ##
  *  - Growing rule: (size==capacity)
  *  - Shrinking rule: (size==capacity) */
-typedef enum{CSTRING_CAPMAN_LOGARITHMIC, CSTRING_CAPMAN_EQUAL_SIZE} CapacityManagement;
+typedef enum{CSTRING_CAPMAN_LOGARITHMIC, CSTRING_CAPMAN_EQUAL_SIZE} StringCapMan;
 
 /* StrType is useful for identifying what type of string is being passed
  * for a function (either array of chars or String). StrType is useful
@@ -38,7 +38,7 @@ typedef enum{CSTRING_TP_STRING, CSTRING_TP_ARR} StrType;
 typedef struct{
   size_t sz, cap;
   char auto_shrink;
-  CapacityManagement capMan;
+  StringCapMan capMan;
 } StringData;
 typedef char* String;
 
@@ -59,11 +59,11 @@ StringData* _string_data(const String *str);
 
 /*----------------------------------Constructor----------------------------------*/
 /* Creates an empty String and returns its address */
-String* string_new_cfg(CapacityManagement capMan, char auto_shrink);
+String* string_new_cfg(StringCapMan capMan, char auto_shrink);
 #define string_new() (string_new_cfg(_CSTRING_DEFAULT_CAP_MAN, _CSTRING_DEFAULT_AUTO_SHRINK))
 
 /* Creates a String with the same content of 'src' and returns its address */
-String* string_new_copy_cfg(const char *src, const StrType srcType, CapacityManagement capMan, char auto_shrink);
+String* string_new_copy_cfg(const char *src, const StrType srcType, StringCapMan capMan, char auto_shrink);
 #define string_new_copy(src, srcType) (string_new_copy_cfg(src, srcType, _CSTRING_DEFAULT_CAP_MAN, _CSTRING_DEFAULT_AUTO_SHRINK))
 /*==============================================================================*/
 
@@ -103,7 +103,7 @@ void string_set_capacity(String *str, const size_t new_cap);
 void string_set_auto_shrink(String *str, const char auto_shrink);
 
 /* Requests the container to reduce its capacity to fit its size, based on
- * CapacityManagement of the String 'str'*/
+ * StringCapMan of the String 'str'*/
 void string_shrink(String *str);
 
 /*==============================================================================*/
