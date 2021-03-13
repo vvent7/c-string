@@ -4,11 +4,11 @@
 #include <stdlib.h>
 
 #ifndef MIN
-  #define MIN(x, y) (x<y ? x : y) /* Returns the minimum number (x or y). */
+  #define MIN(x, y) (x<y ? x : y) /* Returns the minimum number (either x or y). */
 #endif
 
 #ifndef MAX
-  #define MAX(x, y) (x>y ? x : y) /* Returns the maximum number (x or y). */
+  #define MAX(x, y) (x>y ? x : y) /* Returns the maximum number (either x or y). */
 #endif
 
 #define _CSTRING_GROWTH_FACTOR 2
@@ -124,23 +124,29 @@ char string_back(const String *str);
  * Returns: char pointer to the beginning of gap in the array of the String */
 char* string_set_gap(String *str, const size_t index, const size_t length);
 
+/* OBS to all insert functions:
+ *   1) No checks are performed to check the value of 'length';
+ *   2) No checks are performed to check if 's2' is null-terminated.
+ * Sending an invalid value of any of these types will result in
+ * undefined behavior */
+
 /* Inserts 'length' elements of 's2' inside 's1' at specific 'index'
  * Returns: pointer to the beggining of inserted string */
-char* string_n_insert(String *s1, const size_t index, const char *s2, size_t length, const StrType s2Type);
+char* string_n_insert(String *s1, const size_t index, const char *s2, const size_t length);
 
 /* Inserts ALL elements of 's2' inside 's1' at specific 'index'
  * s2Type: specifies type of 's2'
  * Returns: pointer to the beggining of inserted string */
-#define string_insert(s1, index, s2, s2Type) (string_n_insert(s1, index, s2, string_npos, s2Type))
+#define string_insert(s1, index, s2, s2Type) (string_n_insert(s1, index, s2, string_size_by_type(s2, s2Type)))
 
 /* Appends 'length' elements of 's2' at the end of 's1' 
  * Returns: pointer to the beggining of appended string */
-#define string_n_append(s1, s2, length, s2Type) (string_n_insert(s1, string_size(s1), s2, length, s2Type))
+#define string_n_append(s1, s2, length) (string_n_insert(s1, string_size(s1), s2, length))
 
 /* Inserts ALL elements of 's2' inside 's1' at the end of 's1'
  * s2Type: specifies type of 's2'
  * Returns: pointer to the beggining of appended string */
-#define string_append(s1, s2, s2Type) (string_n_insert(s1, string_size(s1), s2, string_npos, s2Type))
+#define string_append(s1, s2, s2Type) (string_n_insert(s1, string_size(s1), s2, string_size_by_type(s2, s2Type)))
 
 /* Inserts char 'c' inside 's1' at specific 'index'
  * Returns: pointer to the inserted char */

@@ -152,13 +152,11 @@ char* string_set_gap(String *str, const size_t index, const size_t length){
   return begin;
 }
 
-char* string_n_insert(String *s1, const size_t index, const char *s2, size_t length, const StrType s2Type){
+char* string_n_insert(String *s1, const size_t index, const char *s2, const size_t length){
   StringData *sd = _string_data(s1);
   char *temp, *dest;
 
   if(sd==NULL || index>sd->sz || s2==NULL) return NULL;
-
-  length = MIN(length, string_size_by_type(s2, s2Type));
 
   temp = malloc(sizeof(char)*(length)); memcpy(temp, s2, length);
   dest = string_set_gap(s1, index, length); memcpy(dest, temp, length);

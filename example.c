@@ -13,7 +13,7 @@ int main(){
   printString(s1);
   string_n_erase(s1, 5, 6); printString(s1);
 
-  string_n_append(s1, " Testing Str", 8, CSTRING_TP_ARR); 
+  string_n_append(s1, " Testing Str", 8); 
   string_append_c(s1, '.'); printString(s1);
 
   string_n_erase(s1, 0, 7); printString(s1);
