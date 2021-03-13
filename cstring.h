@@ -109,18 +109,18 @@ void string_shrink(String *str);
 /*==============================================================================*/
 
 /*--------------------------------Element Access--------------------------------*/
-/* Returns the element at a specific 'index' in the vector, or '\0', if invalid */
+/* Returns the element at a specific 'index' in the String, or '\0', if invalid */
 char string_at(const String *str, const size_t index);
 
-/* Returns the first char in the vector, or '\0' if it's empty */
+/* Returns the first char in the String, or '\0' if it's empty */
 char string_front(const String *str);
 
-/* Returns the last char in the vector, or '\0' if it's empty */
+/* Returns the last char in the String, or '\0' if it's empty */
 char string_back(const String *str);
 /*==============================================================================*/
 
 /*-----------------------------------Modifiers-----------------------------------*/
-/* Sets a gap starting at a specific 'index' with a specific 'length' in the vector.
+/* Sets a gap starting at a specific 'index' with a specific 'length' in the String.
  * Returns: char pointer to the beginning of gap in the array of the String */
 char* string_set_gap(String *str, const size_t index, const size_t length);
 
