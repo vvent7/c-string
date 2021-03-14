@@ -23,7 +23,7 @@ String* string_new_cfg(StringCapMan capMan, char auto_shrink){
 
 String* string_new_copy_cfg(const char *src, const StrType srcType, StringCapMan capMan, char auto_shrink){
   String *str = string_new_cfg(capMan, auto_shrink);
-  string_append(str, src, srcType);
+  string_append_all(str, src, srcType);
   return str;
 }
 
@@ -152,7 +152,7 @@ char* string_set_gap(String *str, const size_t index, const size_t length){
   return begin;
 }
 
-char* string_n_insert(String *s1, const size_t index, const char *s2, const size_t length){
+char* string_insert_n(String *s1, const size_t index, const char *s2, const size_t length){
   StringData *sd = _string_data(s1);
   char *temp, *dest;
 
@@ -166,7 +166,7 @@ char* string_n_insert(String *s1, const size_t index, const char *s2, const size
   return dest;
 }
 
-char* string_insert_c(String *str, const size_t index, const char c){
+char* string_insert_one(String *str, const size_t index, const char c){
   char *dest;
   if((dest = string_set_gap(str, index, 1))==NULL) return NULL;
   (*dest) = c;
@@ -185,7 +185,7 @@ char* string_copy(String *s1, const char *s2, const StrType s2Type){
   return (*s1);
 }
 
-char* string_n_erase(String *str, const size_t index, size_t length){
+char* string_erase_n(String *str, const size_t index, size_t length){
   StringData *sd = _string_data(str);
   char *begin, *end;
 

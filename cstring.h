@@ -132,29 +132,29 @@ char* string_set_gap(String *str, const size_t index, const size_t length);
 
 /* Inserts 'length' elements of 's2' inside 's1' at specific 'index'
  * Returns: pointer to the beggining of inserted string */
-char* string_n_insert(String *s1, const size_t index, const char *s2, const size_t length);
+char* string_insert_n(String *s1, const size_t index, const char *s2, const size_t length);
 
 /* Inserts ALL elements of 's2' inside 's1' at specific 'index'
  * s2Type: specifies type of 's2'
  * Returns: pointer to the beggining of inserted string */
-#define string_insert(s1, index, s2, s2Type) (string_n_insert(s1, index, s2, string_size_by_type(s2, s2Type)))
+#define string_insert_all(s1, index, s2, s2Type) (string_insert_n(s1, index, s2, string_size_by_type(s2, s2Type)))
+
+/* Inserts char 'c' inside 's1' at specific 'index'
+ * Returns: pointer to the inserted char */
+char* string_insert_one(String *str, const size_t index, const char c);
 
 /* Appends 'length' elements of 's2' at the end of 's1' 
  * Returns: pointer to the beggining of appended string */
-#define string_n_append(s1, s2, length) (string_n_insert(s1, string_size(s1), s2, length))
+#define string_append_n(s1, s2, length) (string_insert_n(s1, string_size(s1), s2, length))
 
 /* Inserts ALL elements of 's2' inside 's1' at the end of 's1'
  * s2Type: specifies type of 's2'
  * Returns: pointer to the beggining of appended string */
-#define string_append(s1, s2, s2Type) (string_n_insert(s1, string_size(s1), s2, string_size_by_type(s2, s2Type)))
-
-/* Inserts char 'c' inside 's1' at specific 'index'
- * Returns: pointer to the inserted char */
-char* string_insert_c(String *str, const size_t index, const char c);
+#define string_append_all(s1, s2, s2Type) (string_insert_n(s1, string_size(s1), s2, string_size_by_type(s2, s2Type)))
 
 /* Appends char 'c' at the end of 's1' 
  * Returns: pointer to the inserted char */
-#define string_append_c(str, c) (string_insert_c(str, string_size(str), c))
+#define string_append_one(str, c) (string_insert_one(str, string_size(str), c))
 
 /* Copies ALL elements of 's2' to 's1', replacing its content
  * s2Type: specifies type of 's2'
@@ -165,13 +165,13 @@ char* string_copy(String *s1, const char *s2, const StrType s2Type);
  * Returns:
  *  - Successful: first element after the last erased
  *  - Error: NULL */
-char* string_n_erase(String *str, const size_t index, size_t length);
+char* string_erase_n(String *str, const size_t index, size_t length);
 
 /* Removes a single element from 'str' at specific index
  * Returns: 
  * - Successful: first element after the last erased
  * - Error: NULL */
-#define string_erase(str, index) (string_n_erase(str, index, 1))
+#define string_erase(str, index) (string_erase_n(str, index, 1))
 
 /* Clears String's content */
 void string_clear(String *str);

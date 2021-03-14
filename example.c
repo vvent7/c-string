@@ -11,20 +11,21 @@ int main(){
 
   printf("==========Auto-Shrink off==========\n");
   printString(s1);
-  string_n_erase(s1, 5, 6); printString(s1);
+  string_erase_n(s1, 5, 6); printString(s1);
 
-  string_n_append(s1, " Testing Str", 8); 
-  string_append_c(s1, '.'); printString(s1);
+  string_append_n(s1, " Testing Str", 8); 
+  string_append_one(s1, '.'); printString(s1);
 
-  string_n_erase(s1, 0, 7); printString(s1);
+  string_erase_n(s1, 0, 7); printString(s1);
 
   printf("\n\n==========Auto-Shrink on==========\n");
   string_set_auto_shrink(s1, 1); printString(s1);
-  string_append(s1, *s1, CSTRING_TP_STRING);
-  string_insert_c(s1, string_size(s1)/2,' '); printString(s1);
+  string_append_all(s1, *s1, CSTRING_TP_STRING);
+  string_insert_all(s1, string_size(s1)/2," -=- ", CSTRING_TP_ARR);
+  printString(s1);
 
   string_erase(s1, string_size(s1)-1); printString(s1);
-  string_append(s1, " String!", CSTRING_TP_ARR); printString(s1);
+  string_append_all(s1, " String!", CSTRING_TP_ARR); printString(s1);
   
   string_clear(s1); printString(s1);
 
